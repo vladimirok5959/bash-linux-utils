@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Disable ping reply Permanently
+# You can permanently disable the ping reply using the following method.
+# Step 1: Edit the sysctl.conf file and add the following line.
+# net.ipv4.icmp_echo_ignore_all = 1
+# Step 2: Execute sysctl -p to enforce this setting immediately.
+# sysctl -p
+# The above command loads the sysctl settings from the sysctl.conf file.
+
+echo "1" >  /proc/sys/net/ipv4/icmp_echo_ignore_all
