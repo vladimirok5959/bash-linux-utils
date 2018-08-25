@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Clear rules
+/usr/local/bin/iptables-http-clear
+
+# Download IP list to temp file
+/usr/bin/wget "https://www.cloudflare.com/ips-v4" -O /tmp/ipslist.txt
+
+# Deny all requests to port 80 from all
+/sbin/iptables -I INPUT -p tcp -s 0.0.0.0/0 --dport 80 -j REJECT --reject-with tcp-reset
+
+# Allow requests from www.cloudflare.com
+while read ip; do
+	if [ "$ip" != "" ]; then
+		/sbin/iptables -I INPUT -p tcp -s $ip --dport 80 -j ACCEPT
+	fi
+done < /tmp/ipslist.txt
+
+# Allow from our servers
+# /sbin/iptables -I INPUT -p tcp -s 127.0.0.1 --dport 80 -j ACCEPT
+# /sbin/iptables -I INPUT -p tcp -s 127.0.0.2 --dport 80 -j ACCEPT
+# Where "127.0.0.1" is our server IP
+
+# Remove temp file
+/bin/rm /tmp/ipslist.txt
