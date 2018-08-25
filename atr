@@ -1,0 +1,38 @@
+#!/bin/bash
+
+CURR_USER="$USER"
+STEAM_USER="steam"
+TMUX_SESSION="$STEAM_USER-rust"
+RUST_SERVER_PATH="/home/steam/rust/server"
+
+if [[ "$CURR_USER" != "$STEAM_USER" ]]; then
+	echo "Not steam user! Try login to steam..."
+	/bin/su $STEAM_USER
+	exit
+fi
+
+SESSION_EXISTS=`/usr/bin/tmux ls | /bin/grep "$TMUX_SESSION"`
+if [[ "$SESSION_EXISTS" == "" ]]; then
+	# Create
+	/usr/bin/tmux new-session -d -s $TMUX_SESSION -n TOP
+
+	/usr/bin/tmux new-window -t $TMUX_SESSION:1 -n APP
+	/usr/bin/tmux new-window -t $TMUX_SESSION:2 -n LOGS
+	/usr/bin/tmux new-window -t $TMUX_SESSION:3 -n MC1
+	/usr/bin/tmux new-window -t $TMUX_SESSION:4 -n MC2
+	/usr/bin/tmux new-window -t $TMUX_SESSION:5 -n SH
+
+	/usr/bin/tmux send -t $TMUX_SESSION:0 "top" ENTER
+	/usr/bin/tmux send -t $TMUX_SESSION:1 "cd $RUST_SERVER_PATH" ENTER
+	/usr/bin/tmux send -t $TMUX_SESSION:1 "./run.sh"
+	/usr/bin/tmux send -t $TMUX_SESSION:2 "tail -f $RUST_SERVER_PATH/gamelog.txt" ENTER
+	/usr/bin/tmux send -t $TMUX_SESSION:3 "cd $RUST_SERVER_PATH;mc" ENTER
+	/usr/bin/tmux send -t $TMUX_SESSION:4 "cd $RUST_SERVER_PATH;mc" ENTER
+	/usr/bin/tmux send -t $TMUX_SESSION:5 "cd $RUST_SERVER_PATH" ENTER
+
+	/usr/bin/tmux select-window -t $TMUX_SESSION:1
+	/usr/bin/tmux attach-session -d -t $TMUX_SESSION
+else
+	# Attach
+	/usr/bin/tmux attach-session -d -t $TMUX_SESSION
+fi
