@@ -1,5 +1,12 @@
 #!/bin/sh
 
+# Check for root user
+CURR_USER=`/usr/bin/whoami`
+if [ "$CURR_USER" != "root" ]; then
+	echo "I need root rights... Please login from root"
+	exit
+fi
+
 # Disable ping reply Permanently
 # You can permanently disable the ping reply using the following method.
 # Step 1: Edit the sysctl.conf file and add the following line.

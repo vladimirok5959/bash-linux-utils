@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Check for root user
+CURR_USER=`/usr/bin/whoami`
+if [ "$CURR_USER" != "root" ]; then
+	echo "I need root rights... Please login from root"
+	exit
+fi
+
 # Clear rules
 /usr/local/bin/iptables-http-clear
 

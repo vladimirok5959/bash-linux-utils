@@ -1,5 +1,12 @@
 #!/bin/sh
 
+# Check for root user
+CURR_USER=`/usr/bin/whoami`
+if [ "$CURR_USER" != "root" ]; then
+	echo "I need root rights... Please login from root"
+	exit
+fi
+
 # Save current rules to file
 iptables-save > /etc/iptables.up.rules
 cat /etc/iptables.up.rules
