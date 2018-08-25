@@ -1,10 +1,10 @@
-RELEASEURL_tmux_conf:="https://raw.githubusercontent.com/vladimirok5959/bash-linux-utils/master/.tmux.conf"
-RELEASEURL_atr:="https://raw.githubusercontent.com/vladimirok5959/bash-linux-utils/master/atr"
-RELEASEURL_iptables_http_clear:="https://raw.githubusercontent.com/vladimirok5959/bash-linux-utils/master/iptables-http-clear"
-RELEASEURL_iptables_http_cloudflare:="https://raw.githubusercontent.com/vladimirok5959/bash-linux-utils/master/iptables-http-cloudflare"
-RELEASEURL_iptables_write:="https://raw.githubusercontent.com/vladimirok5959/bash-linux-utils/master/iptables-write"
-RELEASEURL_ping_disable:="https://raw.githubusercontent.com/vladimirok5959/bash-linux-utils/master/ping-disable"
-RELEASEURL_ping_enable:="https://raw.githubusercontent.com/vladimirok5959/bash-linux-utils/master/ping-enable"
+RELEASEURL_tmux_conf:="https://github.com/vladimirok5959/bash-linux-utils/releases/download/latest/tmux.conf"
+RELEASEURL_atr:="https://github.com/vladimirok5959/bash-linux-utils/releases/download/latest/atr"
+RELEASEURL_iptables_http_clear:="https://github.com/vladimirok5959/bash-linux-utils/releases/download/latest/iptables-http-clear"
+RELEASEURL_iptables_http_cloudflare:="https://github.com/vladimirok5959/bash-linux-utils/releases/download/latest/iptables-http-cloudflare"
+RELEASEURL_iptables_write:="https://github.com/vladimirok5959/bash-linux-utils/releases/download/latest/iptables-write"
+RELEASEURL_ping_disable:="https://github.com/vladimirok5959/bash-linux-utils/releases/download/latest/ping-disable"
+RELEASEURL_ping_enable:="https://github.com/vladimirok5959/bash-linux-utils/releases/download/latest/ping-enable"
 
 BINDIR:=/usr/local/bin
 
