@@ -1,4 +1,15 @@
 #!/bin/sh
 
+# Save current rules to file
 iptables-save > /etc/iptables.up.rules
 cat /etc/iptables.up.rules
+
+# Add auto load at server startup
+ifprefile="/etc/network/if-pre-up.d/iptables-load"
+if [ ! -f "$ifprefile" ]; then
+	touch $ifprefile
+	echo "#!/bin/sh" > $ifprefile
+	echo "" > $ifprefile
+	echo "/sbin/iptables-restore < /etc/iptables.up.rules" > $ifprefile
+	chmod 0744 $ifprefile
+fi
