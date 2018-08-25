@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Clear all rules for port 80
+while :
+do
+	last_num="0"
+	while read rnum; do
+		last_num="$rnum"
+	done < <(/sbin/iptables -L INPUT -n --line-numbers | /bin/grep 'tcp dpt:80' | /usr/bin/awk '{print $1}')
+	if [ "$last_num" = "0" ]; then
+		break
+	fi
+	/sbin/iptables -D INPUT $last_num
+done
