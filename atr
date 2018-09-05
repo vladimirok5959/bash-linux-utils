@@ -25,7 +25,8 @@ if [[ "$SESSION_EXISTS" == "" ]]; then
 	/usr/bin/tmux send -t $TMUX_SESSION:0 "top" ENTER
 	/usr/bin/tmux send -t $TMUX_SESSION:1 "cd $RUST_SERVER_PATH" ENTER
 	/usr/bin/tmux send -t $TMUX_SESSION:1 "./run.sh"
-	/usr/bin/tmux send -t $TMUX_SESSION:2 "tail -f $RUST_SERVER_PATH/gamelog.txt" ENTER
+	/usr/bin/tmux send -t $TMUX_SESSION:2 "cd $RUST_SERVER_PATH" ENTER
+	/usr/bin/tmux send -t $TMUX_SESSION:2 "./log.sh" ENTER
 	/usr/bin/tmux send -t $TMUX_SESSION:3 "cd $RUST_SERVER_PATH;mc" ENTER
 	/usr/bin/tmux send -t $TMUX_SESSION:4 "cd $RUST_SERVER_PATH;mc" ENTER
 	/usr/bin/tmux send -t $TMUX_SESSION:5 "cd $RUST_SERVER_PATH" ENTER
