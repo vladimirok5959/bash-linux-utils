@@ -13,15 +13,17 @@ fi
 
 SESSION_EXISTS=`/usr/bin/tmux ls | /bin/grep "$TMUX_SESSION"`
 if [[ "$SESSION_EXISTS" == "" ]]; then
-	# Create
+	# Create session
 	/usr/bin/tmux new-session -d -s $TMUX_SESSION -n TOP
 
+	# Create tabs
 	/usr/bin/tmux new-window -t $TMUX_SESSION:1 -n APP
 	/usr/bin/tmux new-window -t $TMUX_SESSION:2 -n LOGS
 	/usr/bin/tmux new-window -t $TMUX_SESSION:3 -n MC1
 	/usr/bin/tmux new-window -t $TMUX_SESSION:4 -n MC2
 	/usr/bin/tmux new-window -t $TMUX_SESSION:5 -n SH
 
+	# Execute commands
 	/usr/bin/tmux send -t $TMUX_SESSION:0 "top" ENTER
 	/usr/bin/tmux send -t $TMUX_SESSION:1 "cd $RUST_SERVER_PATH" ENTER
 	/usr/bin/tmux send -t $TMUX_SESSION:1 "./run.sh"
@@ -31,9 +33,10 @@ if [[ "$SESSION_EXISTS" == "" ]]; then
 	/usr/bin/tmux send -t $TMUX_SESSION:4 "cd $RUST_SERVER_PATH;mc" ENTER
 	/usr/bin/tmux send -t $TMUX_SESSION:5 "cd $RUST_SERVER_PATH" ENTER
 
+	# Select tab
 	/usr/bin/tmux select-window -t $TMUX_SESSION:1
 	/usr/bin/tmux attach-session -d -t $TMUX_SESSION
 else
-	# Attach
+	# Attach session
 	/usr/bin/tmux attach-session -d -t $TMUX_SESSION
 fi
