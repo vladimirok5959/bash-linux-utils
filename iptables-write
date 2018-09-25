@@ -15,6 +15,7 @@ cat /etc/iptables.up.rules
 ifprefile="/etc/network/if-pre-up.d/iptables-load"
 if [ ! -f "$ifprefile" ]; then
 	touch $ifprefile
+	// TODO: fix append error
 	echo "#!/bin/sh" > $ifprefile
 	echo "" > $ifprefile
 	echo "/sbin/iptables-restore < /etc/iptables.up.rules" > $ifprefile
