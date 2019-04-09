@@ -1,4 +1,4 @@
-RELEASEURL_tmux_conf:="https://github.com/vladimirok5959/bash-linux-utils/releases/download/latest/tmux.conf"
+RELEASEURL_tmux_conf:="https://github.com/vladimirok5959/bash-linux-utils/releases/download/latest/.tmux.conf"
 RELEASEURL_atr:="https://github.com/vladimirok5959/bash-linux-utils/releases/download/latest/atr"
 RELEASEURL_iptables_http_clear:="https://github.com/vladimirok5959/bash-linux-utils/releases/download/latest/iptables-http-clear"
 RELEASEURL_iptables_http_cloudflare:="https://github.com/vladimirok5959/bash-linux-utils/releases/download/latest/iptables-http-cloudflare"
