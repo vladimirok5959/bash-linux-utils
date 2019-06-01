@@ -12,7 +12,7 @@ iptables-save > /etc/iptables.up.rules
 cat /etc/iptables.up.rules
 
 # Add auto load at server startup
-ifprefile="/etc/network/if-pre-up.d/iptables-load"
+ifprefile="/etc/network/if-pre-up.d/iptables"
 if [ ! -f "$ifprefile" ]; then
 	touch $ifprefile
 	echo "#!/bin/sh" > $ifprefile
