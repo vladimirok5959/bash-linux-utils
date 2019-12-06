@@ -5,6 +5,7 @@ RELEASEURL_iptables_http_cloudflare:="https://github.com/vladimirok5959/bash-lin
 RELEASEURL_iptables_write:="https://github.com/vladimirok5959/bash-linux-utils/releases/download/latest/iptables-write"
 RELEASEURL_ping_disable:="https://github.com/vladimirok5959/bash-linux-utils/releases/download/latest/ping-disable"
 RELEASEURL_ping_enable:="https://github.com/vladimirok5959/bash-linux-utils/releases/download/latest/ping-enable"
+RELEASEURL_sess:="https://github.com/vladimirok5959/bash-linux-utils/releases/download/latest/sess"
 
 BINDIR:=/usr/local/bin
 
@@ -33,6 +34,9 @@ install:
 	@wget -q $(RELEASEURL_ping_enable) -O $(BINDIR)/ping-enable > /dev/null
 	@chmod 755 $(BINDIR)/ping-enable
 	@echo "[OK] $(BINDIR)/ping-enable"
+	@wget -q $(RELEASEURL_sess) -O $(BINDIR)/sess > /dev/null
+	@chmod 755 $(BINDIR)/sess
+	@echo "[OK] $(BINDIR)/sess"
 	@echo "All installed successfully"
 info:
 	@echo "You can run 'make install'"

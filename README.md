@@ -21,6 +21,7 @@ Downloading...
 [OK] /usr/local/bin/iptables-write
 [OK] /usr/local/bin/ping-disable
 [OK] /usr/local/bin/ping-enable
+[OK] /usr/local/bin/sess
 All installed successfully
 ```
 cd ~; rm -rd ~/tmplinutils

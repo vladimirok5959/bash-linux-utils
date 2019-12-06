@@ -1,0 +1,45 @@
+#!/bin/bash
+
+###############################################################################
+# Add this to ~/.bashrc
+###############################################################################
+# Sess autocomplete
+# sess_completions()
+# {
+# 	if [ "${#COMP_WORDS[@]}" != "2" ]; then
+# 		return
+# 	fi
+
+# 	while read line; do
+# 		COMPREPLY+=("${line}")
+# 	done <<<$(sess autocomplete | grep "${COMP_WORDS[1]}")
+# }
+# complete -F sess_completions sess
+###############################################################################
+
+session_name="$1"
+session_name_new="$2"
+
+if [[ $session_name = "autocomplete" ]]; then
+	tmux ls | awk -F":" '{ print $1 }'
+	exit 0
+fi
+
+if [[ $session_name != "" ]]; then
+	if [[ $session_name_new != "" ]]; then
+		tmux rename-session -t $session_name $session_name_new
+		exit 0
+	fi
+fi
+
+if [[ $session_name == "" ]]; then
+	tmux ls
+else
+	tmux has-session -t $session_name 2>/dev/null
+	result="$?"
+	if [ $result == "0" ]; then
+		tmux attach -t $session_name
+	else
+		tmux new -s $session_name
+	fi
+fi
